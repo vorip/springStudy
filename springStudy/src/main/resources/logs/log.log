@@ -1,0 +1,16 @@
+2022-04-24 15:46:12,485 [main] INFO  co.kr.spring.ServletInitializer(logStarting:55) - Starting ServletInitializer v0.0.1-SNAPSHOT using Java 1.8.0_271 on DESKTOP-J3COUQT with PID 14288 (D:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\springStudy\WEB-INF\classes started by 최한영 in C:\dev\eclipse)
+2022-04-24 15:46:12,498 [main] INFO  co.kr.spring.ServletInitializer(logStartupProfileInfo:640) - No active profile set, falling back to 1 default profile: "default"
+2022-04-24 15:46:13,894 [main] INFO  org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/](log:173) - Initializing Spring embedded WebApplicationContext
+2022-04-24 15:46:13,894 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 1316 ms
+2022-04-24 15:46:15,447 [main] INFO  co.kr.spring.ServletInitializer(logStarted:61) - Started ServletInitializer in 3.68 seconds (JVM running for 8.83)
+2022-04-24 15:46:15,613 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/](log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-24 15:46:15,614 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+2022-04-24 15:46:15,615 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 1 ms
+2022-04-24 15:51:59,708 [main] INFO  co.kr.spring.ServletInitializer(logStarting:55) - Starting ServletInitializer v0.0.1-SNAPSHOT using Java 1.8.0_271 on DESKTOP-J3COUQT with PID 17000 (D:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\springStudy\WEB-INF\classes started by 최한영 in C:\dev\eclipse)
+2022-04-24 15:51:59,720 [main] INFO  co.kr.spring.ServletInitializer(logStartupProfileInfo:640) - No active profile set, falling back to 1 default profile: "default"
+2022-04-24 15:52:01,114 [main] INFO  org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/](log:173) - Initializing Spring embedded WebApplicationContext
+2022-04-24 15:52:01,114 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 1320 ms
+2022-04-24 15:52:02,678 [main] INFO  co.kr.spring.ServletInitializer(logStarted:61) - Started ServletInitializer in 3.653 seconds (JVM running for 7.147)
+2022-04-24 15:52:02,828 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/](log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-24 15:52:02,828 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+2022-04-24 15:52:02,829 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 1 ms
