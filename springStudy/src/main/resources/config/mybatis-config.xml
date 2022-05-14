@@ -7,6 +7,6 @@
         <package name="co.kr.spring.vo"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mapper/mainMapper.xml"/>
+        <mapper resource="mapper/bbsMapper.xml"/>
     </mappers>
 </configuration>

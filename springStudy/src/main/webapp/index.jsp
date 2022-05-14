@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="/srv/bbs/list">게시판</a>
+<script>
+location.href="/srv/main/main"
+</script>
 </body>
 </html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.kr.spring.srv.mapper.BbsMapper">
+	<select id="getBbs" parameterType="Paging" resultType="BbsVo">
+		SELECT
+			SEQ AS seq
+			, TITLE AS title
+			, CONTENTS AS contents
+			, WRITER AS writer
+			, REGDATE AS regDate
+		FROM
+			BBS
+		LIMIT #{startIndex}, #{cntPerPage}
+	</select>
+	
+	<select id="selectBbs" parameterType="Integer" resultType="BbsVo">
+		SELECT
+			SEQ AS seq
+			, TITLE AS title
+			, CONTENTS AS contents
+			, WRITER AS writer
+			, REGDATE AS regDate
+		FROM
+			BBS
+		WHERE SEQ = #{seq}
+		
+	</select>
+	
+	<select id="getTotal" resultType="Integer">
+		SELECT COUNT(*) FROM BBS
+	</select>
+	
+	<insert id="insertBbs" parameterType="BbsVo">
+		<selectKey keyProperty="seq" resultType="Integer" order="BEFORE">
+			SELECT (CASE WHEN MAX(SEQ) IS NULL THEN 1 ELSE MAX(SEQ)+1 END) AS seq FROM BBS
+		</selectKey>
+		INSERT INTO BBS
+			(SEQ, TITLE, WRITER, CONTENTS, REGDATE)
+		VALUES
+			(#{seq},#{title},#{writer},#{contents}, NOW())
+	</insert>
+	
+	<update id="updatePost" parameterType="BbsVo">
+		UPDATE BBS SET
+			TITLE = #{title}
+			,CONTENTS = #{contents}
+		WHERE SEQ=#{seq}
+	</update>
+	
+	<select id="comSel" parameterType="Integer" resultType="BbsVo">
+		SELECT 
+			COMSEQ
+			, COMWRITER
+			, COMCONTENTS
+			, REGDATE
+		FROM 
+			BBS 
+		WHERE SEQ = ${seq}
+	</select>
+	
+	<insert id="comInsert" parameterType="BbsVo">
+		<selectKey keyProperty="comSeq" resultType="Integer" order="BEFORE">
+			SELECT (CASE WHEN MAX(COMSEQ) IS NULL THEN 1 ELSE MAX(COMSEQ)+1 END) AS comSeq FROM BBSCOMMENT
+		</selectKey>
+		INSERT INTO BBSCOMMENT
+			(COMSEQ, SEQ, COMWRITER, COMCONTENTS, REGDATE)
+		VALUES
+			(${comSeq}, ${seq}, #{comWriter}, #{comContents}, NOW())
+	</insert>
+	
+</mapper>

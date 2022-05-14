@@ -1,0 +1,7 @@
+@charset "UTF-8";
+div, table{float : left;}
+.sortedLi li {
+	list-style-type: none;
+	float: left;
+	margin: 5px;
+}
