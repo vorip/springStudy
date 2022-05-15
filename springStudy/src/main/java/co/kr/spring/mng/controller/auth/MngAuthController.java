@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value="/mng/auth/*")
 public class MngAuthController {
 
-	//주석
+	//주석1213123
 	@RequestMapping(value="list")
 	public String list() {
 		return "/mng/auth/list";
