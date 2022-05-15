@@ -13,6 +13,7 @@
 	<div id="mainContainer">
 		<jsp:include page="/WEB-INF/view/srv/include/top.jsp" />
 		<table>
+			<!-- for(BbsVo li : list){  list : List<BbsVo>-->
 			<c:forEach items="${list}" var="li" varStatus="status">
 				<tr>
 					<td>${paging.startIndex + status.count}</td><%-- ${} --%>

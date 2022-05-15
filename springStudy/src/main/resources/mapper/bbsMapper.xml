@@ -50,12 +50,12 @@
 	
 	<select id="comSel" parameterType="Integer" resultType="BbsVo">
 		SELECT 
-			COMSEQ
-			, COMWRITER
-			, COMCONTENTS
-			, REGDATE
+			COMSEQ AS comSeq
+			, COMWRITER AS comWriter
+			, COMCONTENTS AS comContents
+			, REGDATE AS regDate
 		FROM 
-			BBS 
+			BBSCOMMENT
 		WHERE SEQ = ${seq}
 	</select>
 	
@@ -68,5 +68,19 @@
 		VALUES
 			(${comSeq}, ${seq}, #{comWriter}, #{comContents}, NOW())
 	</insert>
+	
+	<select id="thisCom" parameterType="Integer" resultType="BbsVo">
+		SELECT
+			COMCONTENTS AS comContents
+			, COMSEQ AS comSeq
+		FROM BBSCOMMENT
+			WHERE COMSEQ=${comSeq}
+	</select>
+	
+	<update id="updateCom" parameterType="BbsVo">
+		UPDATE BBSCOMMENT SET
+			COMCONTENTS=#{comContents}
+		WHERE COMSEQ=${comSeq}
+	</update>
 	
 </mapper>

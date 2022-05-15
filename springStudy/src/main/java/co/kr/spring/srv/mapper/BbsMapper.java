@@ -14,6 +14,8 @@ public interface BbsMapper {
 	public int getTotal();
 	public void insertBbs(BbsVo vo);
 	public void updatePost(BbsVo vo);
-	public void comSel(int seq);
+	public List<BbsVo> comSel(int seq);
 	public void comInsert(BbsVo vo);
+	public BbsVo thisCom(int comSeq);
+	public void comUpdate(BbsVo vo);
 }

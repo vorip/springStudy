@@ -52,18 +52,15 @@ public class SrvBbsController {
 		return "/srv/bbs/list";
 	}
 
-	@RequestMapping(value="viewPost", method = RequestMethod.GET)
+	@RequestMapping("viewPost")
 	public String viewPost(Model model, BbsVo vo) {
 		BbsVo viewPost = bbsMapper.selectBbs(vo.getSeq());
 		model.addAttribute("vo",viewPost);
+		
+		List<BbsVo> comList = bbsMapper.comSel(vo.getSeq());
+		model.addAttribute("comList", comList);
 		return "/srv/bbs/viewPost";
 	}
-//	@RequestMapping(value="viewPost", method = RequestMethod.POST)
-//	public String viewPost2(Model model, BbsVo vo) {
-//		BbsVo viewPost = bbsMapper.viewPost(vo.getSeq());
-//		model.addAttribute("vo",viewPost);
-//		return "/srv/bbs/viewPost";
-//	}
 	
 	@GetMapping("write")
 	public String writeGet() {
@@ -88,9 +85,21 @@ public class SrvBbsController {
 		return "redirect:/srv/bbs/viewPost?seq="+vo.getSeq();
 	}
 	
-	@RequestMapping("comment")
+	@RequestMapping("comInsert")
 	public String comWrite(BbsVo vo) {
 		bbsMapper.comInsert(vo);
 		return "redirect:/srv/bbs/viewPost?seq="+vo.getSeq();
+	}
+	
+	@GetMapping("updateCom")
+	public String comUpdate(Model model, BbsVo vo) {
+		BbsVo thisCom = bbsMapper.thisCom(vo.getComSeq());
+		model.addAttribute("vo", thisCom);
+		return "/srv/bbs/updateCom";
+	}
+	@PostMapping("updateCom")
+	public String comUpdate2(BbsVo vo) {
+		bbsMapper.comUpdate(vo);
+		return "/srv/bbs/updateCom";
 	}
 }

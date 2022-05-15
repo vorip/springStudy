@@ -11,6 +11,9 @@
 function commentInsert(){
 	document.getElementById("form").submit();
 }
+function commentUpdate(comSeq){
+	window.open("/srv/bbs/updateCom?comSeq="+comSeq);
+}
 </script>
 <link rel="stylesheet" type="text/css" href="/css/publicCss.css"/>
 </head>
@@ -31,7 +34,28 @@ function commentInsert(){
 		${vo.contents }<br/>
 		<a href="/srv/bbs/updatePost?seq=${vo.seq }">수정</a><br/><br/>
 		<div id="comment">
-			<form id="form" method="POST" action="/srv/bbs/comment">
+			<table>
+				<c:forEach items="${comList}" var="li" varStatus="status">
+					<tr>
+						<td>
+							${li.comContents }
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="${li.comWriter == ''}">
+							 		  비회원
+								</c:when>
+								<c:otherwise>
+									${li.comWriter }
+								</c:otherwise>
+							</c:choose><br/>
+						</td>
+						<td>${li.regDate }</td>
+						<td><a href="javascript:commentUpdate(${li.comSeq });">수정</a>
+					</tr>
+				</c:forEach>
+			</table>
+			<form id="form" method="POST" action="/srv/bbs/comInsert">
 				<input type="hidden" id="seq" name="seq" value="${vo.seq}">
 				<input type="hidden" id="comWriter" name="comWriter" value="${vo.comWriter}">
 				<input type="text" id="comContents" name="comContents"><br/>
