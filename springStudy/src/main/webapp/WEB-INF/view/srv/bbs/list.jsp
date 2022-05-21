@@ -16,7 +16,7 @@
 			<!-- for(BbsVo li : list){  list : List<BbsVo>-->
 			<c:forEach items="${list}" var="li" varStatus="status">
 				<tr>
-					<td>${paging.startIndex + status.count}</td><%-- ${} --%>
+					<td>${paging.startIndex + status.count}</td>
 					<td><a href="/srv/bbs/viewPost?seq=${li.seq }">${li.title }</a></td>
 					<td><c:choose>
 							<c:when test="${li.writer eq ''}">

@@ -48,7 +48,7 @@
 		WHERE SEQ=#{seq}
 	</update>
 	
-	<select id="comSel" parameterType="Integer" resultType="BbsVo">
+	<select id="comSel" parameterType="java.util.HashMap" resultType="BbsVo">
 		SELECT 
 			COMSEQ AS comSeq
 			, COMWRITER AS comWriter
@@ -57,6 +57,7 @@
 		FROM 
 			BBSCOMMENT
 		WHERE SEQ = ${seq}
+		LIMIT #{startIndex}, #{cntPerPage}
 	</select>
 	
 	<insert id="comInsert" parameterType="BbsVo">
@@ -73,14 +74,33 @@
 		SELECT
 			COMCONTENTS AS comContents
 			, COMSEQ AS comSeq
+			, SEQ AS seq
 		FROM BBSCOMMENT
 			WHERE COMSEQ=${comSeq}
 	</select>
 	
-	<update id="updateCom" parameterType="BbsVo">
+	<update id="comUpdate" parameterType="BbsVo">
 		UPDATE BBSCOMMENT SET
 			COMCONTENTS=#{comContents}
 		WHERE COMSEQ=${comSeq}
 	</update>
 	
+	<delete id="delPost" parameterType="Integer">
+		DELETE FROM BBS
+			WHERE SEQ=${seq}
+	</delete>
+	
+	<delete id="delComAll" parameterType="Integer">
+		DELETE FROM BBSCOMMENT
+			WHERE SEQ=${seq}
+	</delete>
+	
+	<delete id="delCom" parameterType="Integer">
+		DELETE FROM BBSCOMMENT
+			WHERE COMSEQ=${comSeq}
+	</delete>
+	
+	<select id="comTotal" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM BBSCOMMENT	WHERE SEQ=${seq}
+	</select>
 </mapper>

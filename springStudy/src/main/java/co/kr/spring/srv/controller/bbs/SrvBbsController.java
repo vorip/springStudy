@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import co.kr.spring.srv.mapper.BbsMapper;
 import co.kr.spring.vo.BbsVo;
@@ -53,12 +52,26 @@ public class SrvBbsController {
 	}
 
 	@RequestMapping("viewPost")
-	public String viewPost(Model model, BbsVo vo) {
+	public String viewPost(HttpServletRequest request, Model model, BbsVo vo) {
 		BbsVo viewPost = bbsMapper.selectBbs(vo.getSeq());
 		model.addAttribute("vo",viewPost);
 		
-		List<BbsVo> comList = bbsMapper.comSel(vo.getSeq());
+		int page = 1;
+		if(request.getParameter("nowPage") != null) {
+			page = Integer.parseInt(request.getParameter("nowPage"));
+		}
+		int total = bbsMapper.comTotal(vo.getSeq());
+		Paging paging = new Paging(total, page);
+
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("seq", viewPost.getSeq());
+		param.put("startIndex", paging.getStartIndex());
+		param.put("cntPerPage", paging.getCntPerPage());
+		
+		List<BbsVo> comList = bbsMapper.comSel(param);
+		
 		model.addAttribute("comList", comList);
+		model.addAttribute("paging", paging);
 		return "/srv/bbs/viewPost";
 	}
 	
@@ -98,8 +111,21 @@ public class SrvBbsController {
 		return "/srv/bbs/updateCom";
 	}
 	@PostMapping("updateCom")
-	public String comUpdate2(BbsVo vo) {
+	public String comUpdate2(Model model, BbsVo vo) {
 		bbsMapper.comUpdate(vo);
+		String url="/srv/bbs/viewPost?seq="+vo.getSeq();
+		model.addAttribute("url", url);
 		return "/srv/bbs/updateCom";
+	}
+	@RequestMapping("delete")
+	public String deleteBbs(int seq) {
+		bbsMapper.delComAll(seq);
+		bbsMapper.delPost(seq);
+		return "redirect:/srv/bbs/list";
+	}
+	@RequestMapping("delCom")
+	public String deleteCom(BbsVo vo) {
+		bbsMapper.delCom(vo.getComSeq());
+		return "redirect:/srv/bbs/viewPost?seq="+vo.getSeq();
 	}
 }

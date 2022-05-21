@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-if("${result}" != ""){
-	alert("${result}");
+if("${url}" != ""){
+	opener.location.href="${url}";
 	window.close();
 }
 function commentUpdate(){
@@ -16,10 +16,9 @@ function commentUpdate(){
 </script>
 </head>
 <body>
-<form id="updateCom" method="POST" action="/srv/bbs/comUpdate">
+<form id="updateCom" method="POST" action="/srv/bbs/updateCom">
 	<input type="hidden" id="comSeq" name="comSeq" value="${vo.comSeq}" />
 	<input type="hidden" id="seq" name="seq" value="${vo.seq}">
-	<input type="hidden" id="comWriter" name="comWriter" value="${vo.comWriter}">
 	<input type="text" id="comContents" name="comContents" value="${vo.comContents}"><br/>
 	<a href="javascript:commentUpdate();">작성</a>
 </form>
