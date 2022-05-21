@@ -6,7 +6,4 @@
     <typeAliases>
         <package name="co.kr.spring.vo"/>
     </typeAliases>
-    <mappers>
-        <mapper resource="mapper/bbsMapper.xml"/>
-    </mappers>
 </configuration>
