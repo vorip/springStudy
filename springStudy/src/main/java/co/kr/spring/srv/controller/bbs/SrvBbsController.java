@@ -26,7 +26,7 @@ public class SrvBbsController {
 	@Autowired
 	CommonDao commonDao;
 	
-	final String queryId = "co.kr.spring.mapper.BbsMapper.";
+	final static String queryId = "co.kr.spring.mapper.BbsMapper.";
 	
 	private Logger logger = LogManager.getLogger(this.getClass());
 	

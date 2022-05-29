@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.kr.spring.srv.mapper.CrawlingMapper">
+	<insert id="insertKeyword" parameterType="CrawlingVo">
+		INSERT INTO lawmaking_keyword
+			(SEQ, KEYWORD, REG_ID, REG_DATE)
+		values
+			(${seq},#{keyword}, #{reg_id},#{reg_date})
+	</insert>
+
+	<insert id="insertGov" parameterType="CrawlingVo">
+		<selectKey keyProperty="seq" order="BEFORE" resultType="Integer">
+			SELECT (CASE WHEN MAX(SEQ)+1 IS NULL THEN 1 ELSE MAX(SEQ)+1 END) AS SEQ FROM LAWMAKING_GOV
+		</selectKey>
+		INSERT INTO lawmaking_gov
+			(SEQ, LAWNAME, LAWTYPE, REVISION, DEPARTMENT, PROMOTION, REG_DATE)
+		values
+			(${seq},#{lawName},#{lawType},#{revision},#{department},#{promotion},NOW())
+	</insert>
+
+	<insert id="insertNsm" parameterType="CrawlingVo">
+		<selectKey keyProperty="seq" order="BEFORE" resultType="Integer">
+			SELECT (CASE WHEN MAX(SEQ)+1 IS NULL THEN 1 ELSE MAX(SEQ)+1 END) AS SEQ FROM LAWMAKING_NSM
+		</selectKey>
+		INSERT INTO lawmaking_nsm
+			(SEQ, LAWNAME, PROMONENT, COMMITTEE, STATECODE, DECISIONRE, BILLNUM, REG_DATE)
+		values
+			(#{seq},#{lawName},#{promonent},#{committee},#{stateCode}, #{decisionRe},#{billNum},NOW())
+	</insert>
+</mapper>

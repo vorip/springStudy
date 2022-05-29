@@ -23,6 +23,10 @@ public class CommonDao {
 		return sqlSession.selectList(queryId, parameter);
 	}
 	
+	public <E> List<E> selectList(String queryId) {
+		return sqlSession.selectList(queryId);
+	}
+	
 	public void insert(String queryId, Object parameter) {
 		sqlSession.insert(queryId, parameter);
 	}
