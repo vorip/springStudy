@@ -12,15 +12,19 @@ var message = '${message}';
 if(message.length > 0){
 	alert(message);
 }
-function signUp(){
+var resUrl = '${resUrl}';
+if(resUrl.length > 0){
+	location.href= resUrl;
+}
+
+function login(){
 	document.getElementById("form").submit();
 }
 </script>
-	<form id="form" method="POST" action="/srv/member/signUp">
-		아이디 : <input type="text" id="id" name="id" value="${vo.id}"><br/>
-		비밀번호 : <input type="password" id="pw" name="pw" value="${vo.pw}"><br/>
-		이름 : <input type="text" id="name" name="name" value="${vo.name}">
+	<form id="form" method="POST" action="/srv/member/login">
+		아이디 : <input id="id" type="text" name="id" value="${inputId}">
+		비밀번호 : <input id="pw" type="password" name="pw">
 	</form>
-	<a href="javascript:signUp();">회원가입</a>
+	<a href="javascript:login();">로그인</a>
 </body>
 </html>

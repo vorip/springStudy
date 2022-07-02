@@ -13,7 +13,7 @@ public class Scheduler {
 	GlobalScheduler scheduler;
 	
 	//초(0-59) 분(0-59)　시간(0-23)　일(1-31)　월(1-12)　요일(0-7) 
-	@Scheduled(cron = "0 15 15 * * *")
+	@Scheduled(cron = "0 08 14 * * *")
 	public void everydaySchedule() {
 		scheduler.lawMaking();
 	}

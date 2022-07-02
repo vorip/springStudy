@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="/mng/auth/list">권한</a>
-<a href="/mng/member/list">사용자 관리</a>
+<jsp:include page="/WEB-INF/view/mng/auth/top.jsp" />
 </body>
 </html>

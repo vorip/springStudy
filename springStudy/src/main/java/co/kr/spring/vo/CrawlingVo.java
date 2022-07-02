@@ -11,8 +11,8 @@ public class CrawlingVo {
 	//검색어 크롤링
 	String lsKndCd="";
 	String cptOfiOrgCd="";
-	String stDtFmt="2021.+3.+20.";
-	String edDtFmt="2022.+4.+20.";
+	String stDtFmt="2021.+5.+1.";
+	String edDtFmt="2022.+5.+29.";
 	String lbPrcStsCd="";
 	String lsNmKo="규칙";
 	//국회입법 검색어
@@ -37,7 +37,7 @@ public class CrawlingVo {
 	int seq=0;
 	String keyword="";
 	String reg_id="";
-	int reg_date=0;
+	String reg_date="";
 	
 	//LAWMAKING GOV
 	String revision="";
@@ -223,10 +223,10 @@ public class CrawlingVo {
 	public void setReg_id(String reg_id) {
 		this.reg_id = reg_id;
 	}
-	public int getReg_date() {
+	public String getReg_date() {
 		return reg_date;
 	}
-	public void setReg_date(int reg_date) {
+	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
 	public String getRevision() {

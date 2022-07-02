@@ -41,10 +41,6 @@ public class SrvBbsController {
 		
 		Paging paging = new Paging(total, page);
 		
-//		Map<String, Object> param = new HashMap<String, Object>();
-//		param.put("start", (paging.getNowPage()-1)*paging.getCntPerPage());
-//		param.put("cnt", paging.getCntPerPage());
-		
 		List<BbsVo> list = commonDao.selectList(queryId + "getBbs", paging);
 		
 		model.addAttribute("list", list);

@@ -8,5 +8,8 @@
 </head>
 <body>
 <a href="/srv/bbs/list">게시판</a>
+<a href="/mng/main/main">관리자</a>
+<a href="/srv/member/signUp">회원가입</a>
+<a href="/srv/member/login">로그인</a>
 </body>
 </html>

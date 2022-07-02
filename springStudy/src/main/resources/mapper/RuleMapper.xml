@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.kr.spring.mapper.RuleMapper">
+	<select id="keywordList" parameterType="Paging" resultType="CrawlingVo">
+		SELECT
+			SEQ AS seq
+			, KEYWORD AS keyword
+			, REG_ID AS reg_id
+			, REG_DATE AS reg_date
+		FROM
+			LAWMAKING_KEYWORD
+		LIMIT #{startIndex}, #{cntPerPage}
+	</select>
+	
+	<select id="keywordCnt" resultType="Integer">
+		SELECT 
+			COUNT(*) 
+		FROM
+			LAWMAKING_KEYWORD
+	</select>
+	
+	<insert id="keywordInsert" parameterType="CrawlingVo">
+		<selectKey keyProperty="seq" resultType="Integer" order="BEFORE">
+			SELECT (CASE WHEN MAX(SEQ) IS NULL THEN 1 ELSE MAX(SEQ)+1 END) AS seq FROM LAWMAKING_KEYWORD
+		</selectKey>
+		INSERT INTO LAWMAKING_KEYWORD
+			(SEQ, KEYWORD, REG_ID, REG_DATE)
+		VALUES
+			(#{seq},#{keyword},#{reg_id},NOW())
+	</insert>
+	
+	<delete id="keywordDelete" parameterType="Integer">
+		DELETE FROM LAWMAKING_KEYWORD WHERE SEQ=#{seq}
+	</delete>
+	
+	<select id="keyword" parameterType="Integer" resultType="CrawlingVo">
+		SELECT
+			SEQ AS seq
+			,KEYWORD AS keyword
+		FROM 
+			LAWMAKING_KEYWORD WHERE SEQ=#{seq}
+	</select>
+	
+	<update id="keywordUpdate" parameterType="CrawlingVo">
+		UPDATE
+			LAWMAKING_KEYWORD
+		SET
+			KEYWORD = #{keyword}
+		WHERE
+			SEQ=#{seq}
+	</update>
+	
+</mapper>

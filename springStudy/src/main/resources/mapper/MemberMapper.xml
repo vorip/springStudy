@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.kr.spring.mapper.MemberMapper">
+	<insert id="signUp" parameterType="MemberVo">
+		INSERT INTO MEMBER
+			(ID, PW, NAME)
+		VALUES
+			(#{id},#{pw},#{name})
+	</insert>
+	
+	<!-- 
+		#{변수명} '값'
+		${변수명} 값
+	 -->
+	<select id="idSelect" resultType="Integer">
+		SELECT 
+			COUNT(*) 
+		FROM 
+			MEMBER
+		WHERE
+			ID=#{id}
+	</select>
+	
+	<select id="login" parameterType="MemberVo" resultType="Integer">
+	 	SELECT
+	 		COUNT(*)
+	 	FROM
+	 		MEMBER
+	 	WHERE
+	 		ID=#{id}
+	 		AND
+	 		PW = #{pw}
+	</select>
+	
+	<select id="memberList" parameterType="Paging" resultType="MemberVo">
+		SELECT
+			ID AS id
+			,PW AS pw
+			,NAME AS name
+		FROM
+			MEMBER
+		LIMIT #{startIndex}, #{cntPerPage}
+	</select>
+	
+	<select id="memberCount" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			MEMBER
+	</select>
+	
+	<select id="memSel" parameterType="String" resultType="MemberVo">
+		SELECT
+			ID, PW, NAME
+		FROM
+			MEMBER
+		WHERE
+			ID=#{id}
+	</select>
+	
+	<update id="memUpdate" parameterType="MemberVo">
+		UPDATE MEMBER SET
+			PW=#{pw}
+			,NAME=#{name}
+		WHERE
+			ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM MEMBER WHERE ID=#{id}
+	</delete>
+</mapper>

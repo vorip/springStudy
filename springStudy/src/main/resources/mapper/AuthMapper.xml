@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.kr.spring.mapper.AuthMapper">
+	<select id="typeList" parameterType="Paging" resultType="AuthVo">
+		SELECT
+			SEQ AS seq
+			, TYPECODE AS typeCode
+			, TYPENAME AS typeName
+		FROM
+			COMMONCODETYPE
+		LIMIT #{startIndex}, #{cntPerPage}
+	</select>
+	
+	<select id="authTotal" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			COMMONCODETYPE
+	</select>
+	
+	<select id="typeSelect" resultType="AuthVo" parameterType="Integer">
+		SELECT
+			TYPECODE, TYPENAME
+		FROM
+			COMMONCODETYPE
+		WHERE
+			SEQ=#{seq}
+	</select>
+	
+	<insert id="typeInsert" parameterType="AuthVo">
+		<selectKey keyProperty="seq" resultType="Integer" order="BEFORE">
+			SELECT (CASE WHEN MAX(SEQ) IS NULL THEN 1 ELSE MAX(SEQ)+1 END) AS seq FROM commoncodetype
+		</selectKey>
+		INSERT INTO COMMONCODETYPE
+			(SEQ, TYPECODE, TYPENAME)
+		VALUES
+			(#{seq}, #{typeCode}, #{typeName})
+	</insert>
+	
+	<!-- <update id="" parameterType="">
+	</update>
+	
+	<delete id="" parameterType="">
+	</delete> -->
+</mapper>
